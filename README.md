@@ -40,16 +40,7 @@ git clone https://github.com/leezhuuuuu/Code-Interpreter-Api.git
 cd Code-Interpreter-Api
 ```
 
-### 2. 安装依赖
-
-请确保已安装 Docker。然后，根据配置文件自动生成 `requirements.txt` 文件：
-
-```bash
-python build.py
-pip install -r requirements.txt
-```
-
-### 3. 配置文件
+### 2. 配置文件
 
 项目使用 `config.yaml` 作为配置文件。确保该文件中包含以下配置：
 
@@ -60,12 +51,21 @@ pip install -r requirements.txt
 - **资源限制**：为 Docker 容器指定内存和 CPU 限制。
 - **超时时间**：指定代码执行的超时时间。
 
+### 3. 安装依赖
+
+请确保已安装 Docker。然后，运行build.py，将根据配置文件自动生成 `requirements.txt` 文件并构建自定义镜像：
+
+```bash
+python build.py
+```
+
+
 ### 4. 启动项目
 
 使用以下命令启动项目：
 
 ```bash
-python app.py
+python center.py
 ```
 
 该命令将自动启动 Flask 应用，并在配置的调度中心端口上运行。
