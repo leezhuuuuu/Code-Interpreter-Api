@@ -1,0 +1,44 @@
+domain: "" #填写域名后对外提供链接将使用域名替代 ip:scheduler_port
+interpreter_image: "leezhuuu/code_interpreter"
+scheduler_port: 8000 # 调度中心端口
+interpreter_port_range: # 设置端口范围为 8001-8003，端口范围决定容器数量
+  start: 7860
+  end: 7860
+dependencies: # 定义容器的依赖项，以下为默认依赖项,可以根据需要自行更改
+  - numpy
+  - pandas
+  - scipy
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  - opencv-python
+  - opencv-python-headless
+  - Pillow
+  - requests
+  - Flask
+  - pyyaml
+  - sympy
+  - plotly
+  - bokeh
+  - statsmodels
+  - jupyter
+  - ipython
+  - jupyterlab
+  - pytest
+  - hypothesis
+  - Flask-Cors
+  - Werkzeug
+  - Gunicorn
+resource_limits:
+  memory: ""  # 可以自定义内存限制，例如 "2g"、"500m" 等，不填则默认不进行限制
+  cpus: ""   # 可以自定义 CPU 限制，例如 "1.5"、"0.5" 等，不填则默认不进行限制
+timeout_seconds: 60  # 设置超时时间为 1 分钟（60 秒）
+postgres:
+  user: "user" # 数据库用户名,请自行更改
+  password: "password" # 数据库密码,请自行更改
+  db: "code_interpreter_db"
+  host: "localhost"
+  port: "5432" # 数据库端口,请自行更改
+mode: "docker" # 选择运行模式，可以是 "docker" 或 "k8s"
+kubeconfig_path: "/path/to/kubeconfig.yaml" # Kubernetes 配置文件路径
+k8s_interpreter_yaml: "/path/to/code-interpreter.yaml" # Kubernetes 部署配置文件路径
