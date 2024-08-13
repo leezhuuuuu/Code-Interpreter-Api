@@ -53,12 +53,23 @@ cd Code-Interpreter-Api
 
 ### 3. 安装依赖
 
-请确保已安装 Docker。然后，运行build.py，将根据配置文件自动生成 `requirements.txt` 文件并构建自定义镜像：
+请确保已安装 Docker。然后，您可以根据需要选择以下两种方法之一来获取 Docker 镜像：
+
+#### 方法一：构建自定义镜像
+
+运行 `build.py`，将根据配置文件自动生成 `requirements.txt` 文件并构建自定义镜像，可根据个人需求自定义配置容器环境依赖：
 
 ```bash
 python build.py
 ```
 
+#### 方法二：拉取提前构建好的镜像
+
+如果您不想构建镜像，可以直接从 Docker Hub 拉取提前构建好的镜像：
+
+```bash
+docker pull leezhuuuuu/code-interpreter-api:latest
+```
 
 ### 4. 启动项目
 
@@ -133,11 +144,7 @@ python center.py
 
 ## Docker 集成
 
-应用程序使用 Docker 在隔离环境中运行代码。可以使用提供的 Dockerfile 和 `build.py` 脚本构建 Docker 镜像。
-
-```bash
-python build.py
-```
+应用程序使用 Docker 在隔离环境中运行代码。您可以选择构建自定义镜像或拉取提前构建好的镜像。
 
 ## PostgreSQL 集成
 
