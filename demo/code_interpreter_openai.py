@@ -2,7 +2,7 @@ import json
 import requests
 
 # API endpoint
-API_ENDPOINT = "https://api.openai.com/openai/v1/chat/completions"
+API_ENDPOINT = "https://api.openai.com/v1/chat/completions"
 # Your API key
 API_KEY = 'sk-xxxxxx'
 # Model to use
