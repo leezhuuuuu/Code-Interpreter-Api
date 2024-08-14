@@ -70,7 +70,7 @@ python build.py
 If you do not wish to build the image, you can directly pull a pre-built image from Docker Hub:
 
 ```bash
-docker pull leezhuuuuu/code-interpreter-api:latest
+docker pull leezhuuu/code_interpreter:latest
 ```
 
 ### 4. Start the Project

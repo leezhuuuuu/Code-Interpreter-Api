@@ -70,7 +70,7 @@ python build.py
 如果您不想构建镜像，可以直接从 Docker Hub 拉取提前构建好的镜像：
 
 ```bash
-docker pull leezhuuuuu/code-interpreter-api:latest
+docker pull leezhuuu/code_interpreter:latest
 ```
 
 ### 4. 启动项目
