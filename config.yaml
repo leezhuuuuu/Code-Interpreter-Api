@@ -40,6 +40,6 @@ postgres:
   db: "code_interpreter_db"
   host: "localhost"
   port: "5432" # 数据库端口,请自行更改
-mode: "docker" # 选择运行模式，可以是 "docker" 或 "k8s"
+mode: "docker" # 选择运行模式，可以是 "docker" 或 "k8s"，k8s模式正在开发中
 kubeconfig_path: "/path/to/kubeconfig.yaml" # Kubernetes 配置文件路径
 k8s_interpreter_yaml: "/path/to/code-interpreter.yaml" # Kubernetes 部署配置文件路径
