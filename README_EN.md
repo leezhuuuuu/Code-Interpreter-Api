@@ -1,6 +1,7 @@
-  # Code Interpreter API 🚀
+   # Code Interpreter API 🚀
 
 [English](https://github.com/leezhuuuuu/Code-Interpreter-Api/blob/main/README_EN.md) | [中文](https://github.com/leezhuuuuu/Code-Interpreter-Api/blob/main/README.md)
+
 
 [![](https://img.shields.io/github/license/leezhuuuuu/Code-Interpreter-Api.svg)](LICENSE)
 ![](https://img.shields.io/github/stars/leezhuuuuu/Code-Interpreter-Api.svg)
@@ -147,6 +148,31 @@ Access the image data stored in the database by GET requests to the `/image/<fil
 }
 ```
 [![Run in Hoppscotch](https://hopp.sh/badge.svg)](https://hopp.sh/r/UEkwk6u6Howq)
+
+### `POST /runcode` Complex Example
+
+#### Request
+
+```json
+{
+  "languageType": "python",
+  "variables": {},
+  "code": "import matplotlib.pyplot as plt\nimport numpy as np\n\n# Define vertices of the triangle\nvertices = np.array([[0, 0], [1, 0], [0.5, np.sqrt(3)/2], [0, 0]])\n\n# Create a new figure\nplt.figure()\n\n# Plot the triangle\nplt.plot(vertices[:, 0], vertices[:, 1], 'b-')\n\n# Set axis limits\nplt.xlim(-0.1, 1.1)\nplt.ylim(-0.1, 1.1)\n\n# Save the plot as triangle.png\nplt.savefig('triangle.png')\nplt.close()"
+}
+```
+
+#### Response
+
+```json
+{
+  "images": {
+    "triangle.png": "https://code.leez.tech/image/cec3bee5-c45b-47c5-814f-7dc90831450e_triangle.png"
+  },
+  "output": ""
+}
+```
+[![Run in Hoppscotch](https://hopp.sh/badge.svg)](https://hopp.sh/r/8c2Q1nPhuTg3)
+
 
 ## Error Handling 🚨
 
