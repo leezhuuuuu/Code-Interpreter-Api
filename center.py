@@ -202,7 +202,7 @@ def process_images(output):
         if DOMAIN:
             images[filename] = f"https://{DOMAIN}/image/{unique_filename}"
         else:
-            images[filename] = f"http://127.0.0.1:{SCHEDULER_PORT}/image/{unique_filename}"
+            images[filename] = f"http://0.0.0.0:{SCHEDULER_PORT}/image/{unique_filename}"
     return output
 
 @app.route('/image/<filename>', methods=['GET'])

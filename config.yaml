@@ -2,9 +2,9 @@ domain: "" #填写域名后对外提供链接将使用域名替代 ip:scheduler_
 interpreter_image: "leezhuuu/code_interpreter"
 scheduler_port: 8000 # 调度中心端口
 interpreter_port_range: # 设置端口范围为 8001-8003，端口范围决定容器数量
-  start: 7860
-  end: 7860
-dependencies: # 定义容器的依赖项，以下为默认依赖项,可以根据需要自行更改
+  start: 8001
+  end: 8003
+dependencies: # 定义容器的依赖项，以下为默认依赖项,可以根据需要自行更改，仅在生成自定义镜像时生效
   - numpy
   - pandas
   - scipy
