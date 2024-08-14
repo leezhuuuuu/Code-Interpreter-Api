@@ -1,6 +1,7 @@
 domain: "" #填写域名后对外提供链接将使用域名替代 ip:scheduler_port
 interpreter_image: "leezhuuu/code_interpreter"
-scheduler_port: 8000 # 调度中心端口
+scheduler_port: 8000 # 调度中心自定义端口
+host: "0.0.0.0" # 调度中心自定义 host 地址
 interpreter_port_range: # 设置端口范围为 8001-8003，端口范围决定容器数量
   start: 8001
   end: 8003

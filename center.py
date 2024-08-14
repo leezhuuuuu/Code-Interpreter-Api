@@ -32,7 +32,8 @@ CPU_LIMIT = RESOURCE_LIMITS.get('cpus')
 POSTGRES = config['postgres']
 TIMEOUT = config.get('timeout', 30)  # 默认超时时间为30秒
 TIMEOUT_SECONDS = config.get('timeout_seconds', 60)  # 从配置中读取超时时间
-SCHEDULER_PORT = config['scheduler_port']  # 新增调度中心端口
+SCHEDULER_PORT = config['scheduler_port']  # 自定义调度中心端口
+HOST = config.get('host', '0.0.0.0')  # 自定义 host 地址
 
 # 容器管理
 containers = []
@@ -49,7 +50,7 @@ POSTGRES_DATA_DIR = os.path.join(os.getcwd(), 'pgdata')
 
 def is_postgres_container_running():
     result = subprocess.run(["docker", "ps", "-a", "--filter", f"name={POSTGRES_CONTAINER_NAME}", "--format", "{{.Names}}"], capture_output=True, text=True)
-    return POSTGRES_CONTAINER_NAME in result.stdout.strip().split('\n')
+    return POSTGRES_CONTAINER_NAME in result.stdout.strip().split('\\n')
 
 def wait_for_postgres_ready():
     retry_attempts = 10
@@ -129,7 +130,7 @@ init_db()
 def start_container(port):
     container_name = f"code_interpreter_docker_{uuid.uuid4()}"
     run_command = [
-        "docker", "run", "--name", container_name, "-d", "-p", f"{port}:5000"
+        "docker", "run", "--name", container_name, "-d", "-p", f"{HOST}:{port}:5000"
     ]
     if MEMORY_LIMIT:
         run_command.extend(["--memory", MEMORY_LIMIT])
@@ -202,7 +203,7 @@ def process_images(output):
         if DOMAIN:
             images[filename] = f"https://{DOMAIN}/image/{unique_filename}"
         else:
-            images[filename] = f"http://0.0.0.0:{SCHEDULER_PORT}/image/{unique_filename}"
+            images[filename] = f"http://{HOST}:{SCHEDULER_PORT}/image/{unique_filename}"
     return output
 
 @app.route('/image/<filename>', methods=['GET'])
@@ -227,9 +228,9 @@ def handle_requests():
 
         try:
             if 'query_string' in data:
-                response = requests.get(f"http://localhost:{port}/runcode?{data['query_string']}", timeout=TIMEOUT_SECONDS)
+                response = requests.get(f"http://{HOST}:{port}/runcode?{data['query_string']}", timeout=TIMEOUT_SECONDS)
             else:
-                response = requests.post(f"http://localhost:{port}/runcode", json=data, timeout=TIMEOUT_SECONDS)
+                response = requests.post(f"http://{HOST}:{port}/runcode", json=data, timeout=TIMEOUT_SECONDS)
             output = response.json()
         except requests.exceptions.Timeout:
             output = {'error': 'Code execution timed out'}
@@ -276,4 +277,4 @@ start_containers()
 atexit.register(stop_containers)
 
 if __name__ == '__main__':
-    app.run(port=SCHEDULER_PORT, threaded=True)  # 使用调度中心端口
+    app.run(host=HOST, port=SCHEDULER_PORT, threaded=True)  # 使用自定义 host 和调度中心端口
