@@ -1,5 +1,6 @@
-Flask==2.0.1
+Flask==2.0.3 
 PyYAML==5.4.1
 SQLAlchemy==1.4.22
 psycopg2-binary==2.9.1
 requests==2.26.0
+werkzeug==2.0.2
