@@ -2,6 +2,12 @@
 
 [English](https://github.com/leezhuuuuu/Code-Interpreter-Api/blob/main/README_EN.md) | [中文](https://github.com/leezhuuuuu/Code-Interpreter-Api/blob/main/README.md)
 
+
+[![](https://img.shields.io/github/license/leezhuuuuu/Code-Interpreter-Api.svg)](LICENSE)
+![](https://img.shields.io/github/stars/leezhuuuuu/Code-Interpreter-Api.svg)
+![](https://img.shields.io/github/forks/leezhuuuuu/Code-Interpreter-Api.svg)
+![](https://img.shields.io/docker/pulls/leezhuuu/code_interpreter.svg)
+
 ## 概述 🌟
 
 Code Interpreter API 是一个集调度中心与沙箱环境于一体的项目，基于 Flask 框架构建，旨在提供一个安全、可靠的 API 接口，用于远程运行代码并获取执行结果。该项目创新性地结合了 Docker 容器技术，实现了对 Python 代码的安全隔离运行。此外，项目还支持将生成的图像数据存储到 PostgreSQL 数据库中，并通过 API 端点进行访问，提供了丰富的数据处理与存储能力。

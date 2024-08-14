@@ -2,6 +2,11 @@
 
 [English](https://github.com/leezhuuuuu/Code-Interpreter-Api/blob/main/README_EN.md) | [中文](https://github.com/leezhuuuuu/Code-Interpreter-Api/blob/main/README.md)
 
+[![](https://img.shields.io/github/license/leezhuuuuu/Code-Interpreter-Api.svg)](LICENSE)
+![](https://img.shields.io/github/stars/leezhuuuuu/Code-Interpreter-Api.svg)
+![](https://img.shields.io/github/forks/leezhuuuuu/Code-Interpreter-Api.svg)
+![](https://img.shields.io/docker/pulls/leezhuuu/code_interpreter.svg)
+
 ## Overview 🌟
 
 The Code Interpreter API is a project that combines a dispatch center and a sandbox environment, built on the Flask framework. It aims to provide a secure and reliable API interface for remotely running code and obtaining execution results. The project creatively integrates Docker container technology to ensure the safe and isolated execution of Python code. Additionally, it supports storing generated image data in a PostgreSQL database and accessing it through API endpoints, offering rich data processing and storage capabilities.
