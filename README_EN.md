@@ -129,6 +129,7 @@ Access the image data stored in the database by GET requests to the `/image/<fil
   "output": "Hello, World!\n"
 }
 ```
+[![Run in Hoppscotch](https://hopp.sh/badge.svg)](https://hopp.sh/r/hqyKw95KDVnl)
 
 ### `GET /runcode`
 
@@ -145,6 +146,7 @@ Access the image data stored in the database by GET requests to the `/image/<fil
   "output": "Hello, World!\n"
 }
 ```
+[![Run in Hoppscotch](https://hopp.sh/badge.svg)](https://hopp.sh/r/UEkwk6u6Howq)
 
 ## Error Handling 🚨
 

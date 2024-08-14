@@ -130,6 +130,7 @@ python3 center.py
   "output": "Hello, World!\n"
 }
 ```
+[![Run in Hoppscotch](https://hopp.sh/badge.svg)](https://hopp.sh/r/hqyKw95KDVnl)
 
 ### `GET /runcode`
 
@@ -146,6 +147,7 @@ python3 center.py
   "output": "Hello, World!\n"
 }
 ```
+[![Run in Hoppscotch](https://hopp.sh/badge.svg)](https://hopp.sh/r/UEkwk6u6Howq)
 
 ## 错误处理 🚨
 
