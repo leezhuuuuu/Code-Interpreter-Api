@@ -1,4 +1,4 @@
-   # Code Interpreter API 🚀
+  # Code Interpreter API 🚀
 
 [English](https://github.com/leezhuuuuu/Code-Interpreter-Api/blob/main/README_EN.md) | [中文](https://github.com/leezhuuuuu/Code-Interpreter-Api/blob/main/README.md)
 
@@ -190,3 +190,15 @@ Contributions are welcome! Please submit issues or pull requests.
 - Docker
 - PostgreSQL
 - SQLAlchemy
+
+## GitHub Star History
+
+<p align="center">
+  <a href="https://star-history.com/#leezhuuuuu/Code-Interpreter-Api&Date">
+    <img 
+      alt="Star History Chart" 
+      src="https://api.star-history.com/svg?repos=leezhuuuuu/Code-Interpreter-Api&type=Date" 
+      style="max-width:100%;height:auto;"
+    />
+  </a>
+</p>
