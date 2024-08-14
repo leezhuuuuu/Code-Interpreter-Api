@@ -23,10 +23,17 @@ def run_program(code):
         
         # Parse the response
         response_json = response.json()
+        result = {}
         if "output" in response_json:
-            return json.dumps({"output": response_json["output"]})
-        else:
-            return json.dumps({"error": "Failed to execute code"})
+            result["output"] = response_json["output"]
+        if "images" in response_json:
+            result["images"] = response_json["images"]
+        
+        # Print the response from https://code.leez.tech/runcode
+        print("Response from https://code.leez.tech/runcode:")
+        print(json.dumps(response_json, indent=4))
+        
+        return json.dumps(result)
     except Exception as e:
         return json.dumps({"error": str(e)})
 
@@ -125,5 +132,6 @@ def run_conversation(user_prompt):
 
         return second_response_json['choices'][0]['message']['content']
 
-user_prompt = "计算9的11次方，并用中文输出结果。"
+# user_prompt = "计算9的11次方，并用中文输出结果。"
+user_prompt = "使用python生成一个三角形图片"
 print(run_conversation(user_prompt))
