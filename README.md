@@ -68,7 +68,7 @@ pip install -r requirements.txt
 运行 `build.py`，将根据配置文件自动生成 `requirements.txt` 文件并构建自定义镜像，可根据个人需求自定义配置容器环境依赖：
 
 ```bash
-python build.py
+python3 build.py
 ```
 
 #### 方法二：拉取提前构建好的镜像
@@ -84,7 +84,7 @@ docker pull leezhuuu/code_interpreter:latest
 使用以下命令启动项目：
 
 ```bash
-python center.py
+python3 center.py
 ```
 
 该命令将自动启动 Flask 应用，并在配置的调度中心端口上运行。
@@ -169,7 +169,7 @@ python center.py
 应用程序包含一个并发测试脚本 `concurrent_test.py`，可以运行以验证并发功能：
 
 ```bash
-python concurrent_test.py
+python3 concurrent_test.py
 ```
 
 ## 许可证 📄

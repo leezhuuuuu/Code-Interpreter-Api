@@ -68,7 +68,7 @@ Make sure Docker is installed. Then, you can choose one of the following two met
 Run `build.py`, which will automatically generate the `requirements.txt` file based on the configuration file and build a custom image. You can customize the container environment dependencies according to your needs:
 
 ```bash
-python build.py
+python3 build.py
 ```
 
 #### Method 2: Pull a Pre-built Image
@@ -84,7 +84,7 @@ docker pull leezhuuu/code_interpreter:latest
 Use the following command to start the project:
 
 ```bash
-python center.py
+python3 center.py
 ```
 
 This command will automatically start the Flask application and run it on the configured dispatch center port.
@@ -169,7 +169,7 @@ The application uses threading to handle multiple concurrent requests and uses a
 The application includes a concurrency testing script `concurrent_test.py`, which can be run to verify concurrency functionality:
 
 ```bash
-python concurrent_test.py
+python3 concurrent_test.py
 ```
 
 ## License 📄
