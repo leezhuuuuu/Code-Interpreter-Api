@@ -226,15 +226,5 @@ python3 concurrent_test.py
 
 ## GitHub Star History
 
-<p align="center">
-  <a href="https://star-history.com/#leezhuuuuu/Code-Interpreter-Api&Date">
-    <img 
-      alt="Star History Chart" 
-      src="https://api.star-history.com/svg?repos=leezhuuuuu/Code-Interpreter-Api&type=Date" 
-      style="max-width:100%;height:auto;"
-    />
-  </a>
-</p>
-## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=leezhuuuuu/Code-Interpreter-Api&type=Date)](https://star-history.com/#leezhuuuuu/Code-Interpreter-Api&Date)
