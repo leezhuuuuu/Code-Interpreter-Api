@@ -1,4 +1,4 @@
-# Code Interpreter API
+ # Code Interpreter API
 
 [English](https://github.com/leezhuuuuu/Code-Interpreter-Api/blob/main/README.md) | [中文](https://github.com/leezhuuuuu/Code-Interpreter-Api/blob/main/README_CN.md)
 
@@ -42,7 +42,13 @@ git clone https://github.com/leezhuuuuu/Code-Interpreter-Api.git
 cd Code-Interpreter-Api
 ```
 
-### 2. 配置文件
+### 2. 安装依赖
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. 配置文件
 
 项目使用 `config.yaml` 作为配置文件。确保该文件中包含以下配置：
 
@@ -53,7 +59,7 @@ cd Code-Interpreter-Api
 - **资源限制**：为 Docker 容器指定内存和 CPU 限制。
 - **超时时间**：指定代码执行的超时时间。
 
-### 3. 安装依赖
+### 4. 获取 Docker 镜像
 
 请确保已安装 Docker。然后，您可以根据需要选择以下两种方法之一来获取 Docker 镜像：
 
@@ -73,7 +79,7 @@ python build.py
 docker pull leezhuuu/code_interpreter:latest
 ```
 
-### 4. 启动项目
+### 5. 启动项目
 
 使用以下命令启动项目：
 
