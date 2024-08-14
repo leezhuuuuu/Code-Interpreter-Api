@@ -10,7 +10,7 @@
 
 ## Overview 🌟
 
-The Code Interpreter API is a project that combines a dispatch center and a sandbox environment, built on the Flask framework. It aims to provide a secure and reliable API interface for remotely running code and obtaining execution results. The project creatively integrates Docker container technology to ensure the safe and isolated execution of Python code. Additionally, it supports storing generated image data in a PostgreSQL database and accessing it through API endpoints, offering rich data processing and storage capabilities.
+The Code Interpreter API is a project that integrates a dispatch center and a sandbox environment, dedicated to creating the world's most user-friendly code interpreter. Its purpose is to provide a safe and reliable API interface for remotely running code and retrieving execution results, accelerating the development of various AI Agents, and serving as a boon for many AI enthusiasts. The project innovatively combines Docker container technology to achieve safe isolation for running Python code. Additionally, the project supports storing generated image data in a PostgreSQL database and accessing it through API endpoints, offering robust data processing and storage capabilities.
 You can access the Demo built by Fastgpt [here](https://fastgpt.leez.tech/chat/share?shareId=emvjwl8hgqu4pj314k7yakpp).
 
 ## Tech Stack 🛠️
