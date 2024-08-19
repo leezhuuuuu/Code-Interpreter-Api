@@ -1,0 +1,418 @@
+{
+    "nodes": [
+      {
+        "nodeId": "pluginInput",
+        "name": "自定义插件输入",
+        "intro": "可以配置插件需要哪些输入，利用这些输入来运行插件",
+        "avatar": "core/workflow/template/workflowStart",
+        "flowNodeType": "pluginInput",
+        "showStatus": false,
+        "position": {
+          "x": 355.26262363800697,
+          "y": -185.4640717105371
+        },
+        "version": "481",
+        "inputs": [
+          {
+            "renderTypeList": [
+              "JSONEditor"
+            ],
+            "selectedTypeIndex": 0,
+            "valueType": "string",
+            "canEdit": true,
+            "key": "code",
+            "label": "code",
+            "description": "代码解释器执行所需要的python代码片段",
+            "required": true,
+            "defaultValue": "print(\"hello,world!\")",
+            "toolDescription": "代码解释器执行所需要的python代码片段"
+          },
+          {
+            "renderTypeList": [
+              "JSONEditor"
+            ],
+            "selectedTypeIndex": 0,
+            "valueType": "string",
+            "canEdit": true,
+            "key": "languageType",
+            "label": "languageType",
+            "description": "需要运行的编程语言类型，默认为python",
+            "required": true,
+            "defaultValue": "python"
+          },
+          {
+            "renderTypeList": [
+              "JSONEditor"
+            ],
+            "selectedTypeIndex": 0,
+            "valueType": "string",
+            "canEdit": true,
+            "key": "variables",
+            "label": "variables",
+            "description": "代码解释器运行时所设置的变量",
+            "required": false,
+            "defaultValue": "{\"m\": 7,\"n\": 4}",
+            "toolDescription": "代码解释器运行时所设置的变量"
+          }
+        ],
+        "outputs": [
+          {
+            "id": "code",
+            "valueType": "string",
+            "key": "code",
+            "label": "code",
+            "type": "hidden"
+          },
+          {
+            "id": "languageType",
+            "valueType": "string",
+            "key": "languageType",
+            "label": "languageType",
+            "type": "hidden"
+          },
+          {
+            "id": "variables",
+            "valueType": "string",
+            "key": "variables",
+            "label": "variables",
+            "type": "hidden"
+          }
+        ]
+      },
+      {
+        "nodeId": "pluginOutput",
+        "name": "自定义插件输出",
+        "intro": "自定义配置外部输出，使用插件时，仅暴露自定义配置的输出",
+        "avatar": "core/workflow/template/pluginOutput",
+        "flowNodeType": "pluginOutput",
+        "showStatus": false,
+        "position": {
+          "x": 1670.1337182171503,
+          "y": -158.4298364770928
+        },
+        "version": "481",
+        "inputs": [
+          {
+            "renderTypeList": [
+              "reference"
+            ],
+            "valueType": "string",
+            "canEdit": true,
+            "key": "output",
+            "label": "output",
+            "description": "",
+            "value": [
+              "sNGG0lGPN09Z",
+              "is2e10Qdqgbe"
+            ]
+          },
+          {
+            "renderTypeList": [
+              "reference"
+            ],
+            "valueType": "string",
+            "canEdit": true,
+            "key": "images",
+            "label": "images",
+            "description": "如果程序有图片生成时，images返回图片对应的链接",
+            "value": [
+              "sNGG0lGPN09Z",
+              "chi2PEIP0ity"
+            ]
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "nodeId": "sNGG0lGPN09Z",
+        "name": "HTTP 请求",
+        "intro": "可以发出一个 HTTP 请求，实现更为复杂的操作（联网搜索、数据库查询等）",
+        "avatar": "core/workflow/template/httpRequest",
+        "flowNodeType": "httpRequest468",
+        "showStatus": true,
+        "position": {
+          "x": 1098.1937779736922,
+          "y": -404.10745204326895
+        },
+        "version": "481",
+        "inputs": [
+          {
+            "key": "system_addInputParam",
+            "renderTypeList": [
+              "addInputParam"
+            ],
+            "valueType": "dynamic",
+            "label": "",
+            "required": false,
+            "description": "core.module.input.description.HTTP Dynamic Input",
+            "customInputConfig": {
+              "selectValueTypeList": [
+                "string",
+                "number",
+                "boolean",
+                "object",
+                "arrayString",
+                "arrayNumber",
+                "arrayBoolean",
+                "arrayObject",
+                "any",
+                "chatHistory",
+                "datasetQuote",
+                "dynamic",
+                "selectApp",
+                "selectDataset"
+              ],
+              "showDescription": false,
+              "showDefaultValue": true
+            }
+          },
+          {
+            "key": "system_httpMethod",
+            "renderTypeList": [
+              "custom"
+            ],
+            "valueType": "string",
+            "label": "",
+            "value": "GET",
+            "required": true
+          },
+          {
+            "key": "system_httpReqUrl",
+            "renderTypeList": [
+              "hidden"
+            ],
+            "valueType": "string",
+            "label": "",
+            "description": "core.module.input.description.Http Request Url",
+            "placeholder": "https://api.ai.com/getInventory",
+            "required": false,
+            "value": "https://code.leez.tech/runcode"
+          },
+          {
+            "key": "system_httpHeader",
+            "renderTypeList": [
+              "custom"
+            ],
+            "valueType": "any",
+            "value": [],
+            "label": "",
+            "description": "core.module.input.description.Http Request Header",
+            "placeholder": "core.module.input.description.Http Request Header",
+            "required": false
+          },
+          {
+            "key": "system_httpParams",
+            "renderTypeList": [
+              "hidden"
+            ],
+            "valueType": "any",
+            "value": [
+              {
+                "key": "code",
+                "type": "string",
+                "value": "{{code}}"
+              },
+              {
+                "key": "languageType",
+                "type": "string",
+                "value": "{{languageType}}"
+              },
+              {
+                "key": "variables",
+                "type": "string",
+                "value": "{{variables}}"
+              }
+            ],
+            "label": "",
+            "required": false
+          },
+          {
+            "key": "system_httpJsonBody",
+            "renderTypeList": [
+              "hidden"
+            ],
+            "valueType": "any",
+            "value": "",
+            "label": "",
+            "required": false
+          },
+          {
+            "renderTypeList": [
+              "reference"
+            ],
+            "valueType": "string",
+            "canEdit": true,
+            "key": "code",
+            "label": "code",
+            "customInputConfig": {
+              "selectValueTypeList": [
+                "string",
+                "number",
+                "boolean",
+                "object",
+                "arrayString",
+                "arrayNumber",
+                "arrayBoolean",
+                "arrayObject",
+                "any",
+                "chatHistory",
+                "datasetQuote",
+                "dynamic",
+                "selectApp",
+                "selectDataset"
+              ],
+              "showDescription": false,
+              "showDefaultValue": true
+            },
+            "required": true,
+            "value": [
+              "pluginInput",
+              "code"
+            ]
+          },
+          {
+            "renderTypeList": [
+              "reference"
+            ],
+            "valueType": "string",
+            "canEdit": true,
+            "key": "languageType",
+            "label": "languageType",
+            "customInputConfig": {
+              "selectValueTypeList": [
+                "string",
+                "number",
+                "boolean",
+                "object",
+                "arrayString",
+                "arrayNumber",
+                "arrayBoolean",
+                "arrayObject",
+                "any",
+                "chatHistory",
+                "datasetQuote",
+                "dynamic",
+                "selectApp",
+                "selectDataset"
+              ],
+              "showDescription": false,
+              "showDefaultValue": true
+            },
+            "required": true,
+            "value": [
+              "pluginInput",
+              "languageType"
+            ]
+          },
+          {
+            "renderTypeList": [
+              "reference"
+            ],
+            "valueType": "string",
+            "canEdit": true,
+            "key": "variables",
+            "label": "variables",
+            "customInputConfig": {
+              "selectValueTypeList": [
+                "string",
+                "number",
+                "boolean",
+                "object",
+                "arrayString",
+                "arrayNumber",
+                "arrayBoolean",
+                "arrayObject",
+                "any",
+                "chatHistory",
+                "datasetQuote",
+                "dynamic",
+                "selectApp",
+                "selectDataset"
+              ],
+              "showDescription": false,
+              "showDefaultValue": true
+            },
+            "required": true,
+            "value": [
+              "pluginInput",
+              "variables"
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "id": "error",
+            "key": "error",
+            "label": "请求错误",
+            "description": "HTTP请求错误信息，成功时返回空",
+            "valueType": "object",
+            "type": "static"
+          },
+          {
+            "id": "httpRawResponse",
+            "key": "httpRawResponse",
+            "label": "原始响应",
+            "required": true,
+            "description": "HTTP请求的原始响应。只能接受字符串或JSON类型响应数据。",
+            "valueType": "any",
+            "type": "static"
+          },
+          {
+            "id": "system_addOutputParam",
+            "key": "system_addOutputParam",
+            "type": "dynamic",
+            "valueType": "dynamic",
+            "label": "",
+            "customFieldConfig": {
+              "selectValueTypeList": [
+                "string",
+                "number",
+                "boolean",
+                "object",
+                "arrayString",
+                "arrayNumber",
+                "arrayBoolean",
+                "arrayObject",
+                "any",
+                "chatHistory",
+                "datasetQuote",
+                "dynamic",
+                "selectApp",
+                "selectDataset"
+              ],
+              "showDescription": false,
+              "showDefaultValue": false
+            }
+          },
+          {
+            "id": "is2e10Qdqgbe",
+            "valueType": "string",
+            "type": "dynamic",
+            "key": "output",
+            "label": "output"
+          },
+          {
+            "id": "chi2PEIP0ity",
+            "valueType": "string",
+            "type": "dynamic",
+            "key": "images",
+            "label": "images"
+          }
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "source": "pluginInput",
+        "target": "sNGG0lGPN09Z",
+        "sourceHandle": "pluginInput-source-right",
+        "targetHandle": "sNGG0lGPN09Z-target-left"
+      },
+      {
+        "source": "sNGG0lGPN09Z",
+        "target": "pluginOutput",
+        "sourceHandle": "sNGG0lGPN09Z-source-right",
+        "targetHandle": "pluginOutput-target-left"
+      }
+    ]
+  }
