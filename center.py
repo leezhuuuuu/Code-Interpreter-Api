@@ -47,11 +47,11 @@ semaphore = threading.Semaphore(len(ports))  # 控制并发请求的信号量
 
 # 检查 PostgreSQL 容器是否存在
 POSTGRES_CONTAINER_NAME = "postgres_code_interpreter"
-POSTGRES_DATA_DIR = os.path.normpath(os.path.join(os.getcwd(), 'pgdata'))
+POSTGRES_VOLUME_NAME = "postgres_code_interpreter_volume"
 
 def is_postgres_container_running():
     result = subprocess.run(["docker", "ps", "-a", "--filter", f"name={POSTGRES_CONTAINER_NAME}", "--format", "{{.Names}}"], capture_output=True, text=True)
-    return POSTGRES_CONTAINER_NAME in result.stdout.strip().split('\\n')
+    return POSTGRES_CONTAINER_NAME in result.stdout.strip().split('\n')
 
 def wait_for_postgres_ready():
     retry_attempts = 10
@@ -74,15 +74,12 @@ def wait_for_postgres_ready():
     return False
 
 if not is_postgres_container_running():
-    if not os.path.exists(POSTGRES_DATA_DIR):
-        os.makedirs(POSTGRES_DATA_DIR)
-
     subprocess.run([
         "docker", "run", "--name", POSTGRES_CONTAINER_NAME, "-d",
         "-e", f"POSTGRES_USER={POSTGRES['user']}",
         "-e", f"POSTGRES_PASSWORD={POSTGRES['password']}",
         "-e", f"POSTGRES_DB={POSTGRES['db']}",
-        "-v", f"{POSTGRES_DATA_DIR}:/var/lib/postgresql/data",
+        "-v", f"{POSTGRES_VOLUME_NAME}:/var/lib/postgresql/data",
         "-p", f"{POSTGRES['port']}:5432",
         "postgres"
     ], check=True)
