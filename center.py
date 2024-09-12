@@ -1,7 +1,7 @@
 import yaml
 import subprocess
 import uuid
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, redirect, url_for
 from queue import Queue
 import requests
 import threading
@@ -275,6 +275,10 @@ for _ in range(len(ports)):
 
 start_containers()
 atexit.register(stop_containers)
+
+@app.route('/')
+def index():
+    return redirect("https://github.com/leezhuuu/Code-Interpreter-Api")
 
 if __name__ == '__main__':
     app.run(host=HOST, port=SCHEDULER_PORT, threaded=True)  # 使用自定义 host 和调度中心端口
