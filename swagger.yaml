@@ -1,0 +1,59 @@
+openapi: 3.0.0
+info:
+  title: Code Interpreter API
+  description: API documentation for the Code Interpreter service
+  version: 1.0.0
+servers:
+  - url: http://{host}:{port}
+    variables:
+      host:
+        default: localhost
+      port:
+        default: 5000
+paths:
+  /runcode:
+    post:
+      summary: Run code
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                  example: print("Hello, World!")
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: string
+        '400':
+          description: Invalid request
+        '504':
+          description: Request timed out
+  /image/{filename}:
+    get:
+      summary: Get image by filename
+      parameters:
+        - name: filename
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Image not found

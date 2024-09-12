@@ -14,6 +14,7 @@ from sqlalchemy import create_engine, Column, String, LargeBinary, Integer
 from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy.exc import OperationalError, IntegrityError
 import psycopg2
+from flask_swagger_ui import get_swaggerui_blueprint
 
 app = Flask(__name__)
 
@@ -46,7 +47,7 @@ semaphore = threading.Semaphore(len(ports))  # 控制并发请求的信号量
 
 # 检查 PostgreSQL 容器是否存在
 POSTGRES_CONTAINER_NAME = "postgres_code_interpreter"
-POSTGRES_DATA_DIR = os.path.join(os.getcwd(), 'pgdata')
+POSTGRES_DATA_DIR = os.path.normpath(os.path.join(os.getcwd(), 'pgdata'))
 
 def is_postgres_container_running():
     result = subprocess.run(["docker", "ps", "-a", "--filter", f"name={POSTGRES_CONTAINER_NAME}", "--format", "{{.Names}}"], capture_output=True, text=True)
@@ -279,6 +280,21 @@ atexit.register(stop_containers)
 @app.route('/')
 def index():
     return redirect("https://github.com/leezhuuu/Code-Interpreter-Api")
+
+# Swagger 配置
+SWAGGER_URL = '/doc'  # Swagger UI 的 URL
+API_URL = '/static/swagger.yaml'  # Swagger 配置文件的 URL
+
+# 创建 Swagger UI 蓝图
+swaggerui_blueprint = get_swaggerui_blueprint(
+    SWAGGER_URL,
+    API_URL,
+    config={  # Swagger UI 配置
+        'app_name': "Code Interpreter API"
+    }
+)
+
+app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 
 if __name__ == '__main__':
     app.run(host=HOST, port=SCHEDULER_PORT, threaded=True)  # 使用自定义 host 和调度中心端口
