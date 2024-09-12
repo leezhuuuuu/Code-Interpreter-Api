@@ -276,7 +276,7 @@ atexit.register(stop_containers)
 
 @app.route('/')
 def index():
-    return redirect("https://github.com/leezhuuu/Code-Interpreter-Api")
+    return redirect("https://github.com/leezhuuuuu/Code-Interpreter-Api")
 
 # Swagger 配置
 SWAGGER_URL = '/doc'  # Swagger UI 的 URL
