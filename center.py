@@ -282,13 +282,18 @@ def index():
 SWAGGER_URL = '/doc'  # Swagger UI 的 URL
 API_URL = '/static/swagger.yaml'  # Swagger 配置文件的 URL
 
+# 动态设置 Swagger UI 的默认请求地址
+swagger_config = {
+    'app_name': "Code Interpreter API",
+    'urls.primaryName': "Code Interpreter API",
+    'urls.primaryValue': f"https://{DOMAIN}" if DOMAIN else f"http://{HOST}:{SCHEDULER_PORT}"
+}
+
 # 创建 Swagger UI 蓝图
 swaggerui_blueprint = get_swaggerui_blueprint(
     SWAGGER_URL,
     API_URL,
-    config={  # Swagger UI 配置
-        'app_name': "Code Interpreter API"
-    }
+    config=swagger_config  # 使用动态配置
 )
 
 app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
