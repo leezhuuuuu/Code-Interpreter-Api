@@ -30,6 +30,7 @@ dependencies: # 定义容器的依赖项，以下为默认依赖项,可以根据
   - Flask-Cors
   - Werkzeug
   - Gunicorn
+  - handcalcs
 resource_limits:
   memory: ""  # 可以自定义内存限制，例如 "2g"、"500m" 等，不填则默认不进行限制
   cpus: ""   # 可以自定义 CPU 限制，例如 "1.5"、"0.5" 等，不填则默认不进行限制
