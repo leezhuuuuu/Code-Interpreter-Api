@@ -35,6 +35,10 @@ jobs:
         id: generate_dockerfile
         run: |
           dependencies=$(yq e '.dependencies[]' config.yaml | tr '\n' ' ')
+          if [ -z "$dependencies" ]; then
+            echo "No dependencies found in config.yaml"
+            exit 1
+          fi
           cat > Dockerfile <<EOL
           FROM python:3.10-slim
 
@@ -49,7 +53,7 @@ jobs:
               && apt-get clean \\
               && pip install --no-cache-dir --upgrade pip \\
               && pip install --no-cache-dir cython \\
-              && pip install --no-cache-dir ${dependencies}
+              && pip install --no-cache-dir $dependencies
 
           COPY . .
 
