@@ -39,7 +39,9 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/code_interpreter:latest
+          tags: |
+            ${{ secrets.DOCKER_USERNAME }}/code_interpreter:latest
+            ${{ secrets.DOCKER_USERNAME }}/code_interpreter:${{ github.sha }}
 
       - name: Clean up Docker images
         run: |
