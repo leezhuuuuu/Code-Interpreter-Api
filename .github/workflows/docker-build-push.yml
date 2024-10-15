@@ -34,7 +34,7 @@ jobs:
       - name: Read config.yaml and generate Dockerfile
         id: generate_dockerfile
         run: |
-          dependencies=$(yq e '.dependencies[]' config.yaml | tr '\n' ' ')
+          dependencies=$(yq e '.dependencies' config.yaml | tr '\n' ' ')
           if [ -z "$dependencies" ]; then
             echo "No dependencies found in config.yaml"
             exit 1
