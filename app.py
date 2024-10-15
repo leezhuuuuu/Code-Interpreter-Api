@@ -58,6 +58,14 @@ def run_code(language, code, variables, timeout):
             # 使用subprocess运行代码
             result = subprocess.run([sys.executable, '-c', code_with_vars], capture_output=True, text=True, timeout=timeout)
             return result.stdout, result.stderr
+        elif language == 'bash':
+            # 将变量注入到bash环境中
+            env = os.environ.copy()
+            env.update({key: str(value) for key, value in variables.items()})
+            
+            # 使用subprocess运行bash代码
+            result = subprocess.run(['bash', '-c', code], capture_output=True, text=True, timeout=timeout, env=env)
+            return result.stdout, result.stderr
         else:
             return None, "Unsupported language"
     except subprocess.TimeoutExpired:

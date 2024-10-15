@@ -24,5 +24,3 @@ def build_docker_image(image_name):
     print(f"Built Docker image {image_name}")
 
 build_docker_image(INTERPRETER_IMAGE)
-
-
