@@ -1,46 +1,79 @@
-domain: "" #填写域名后对外提供链接将使用域名替代 ip:scheduler_port
-interpreter_image: "leezhuuu/code_interpreter"
-scheduler_port: 5000 # 调度中心自定义端口
-host: "0.0.0.0" # 调度中心自定义 host 地址
-interpreter_port_range: # 设置端口范围为 8001-8003，端口范围决定容器数量
-  start: 8001
-  end: 8003
-dependencies: # 定义容器的依赖项，以下为默认依赖项,可以根据需要自行更改，仅在生成自定义镜像时生效
-  - numpy
-  - pandas
-  - scipy
-  - matplotlib
-  - seaborn
-  - scikit-learn
-  - opencv-python
-  - opencv-python-headless
-  - Pillow
-  - requests
-  - Flask
-  - pyyaml
-  - sympy
-  - plotly
-  - bokeh
-  - statsmodels
-  - jupyter
-  - ipython
-  - jupyterlab
-  - pytest
-  - hypothesis
-  - Flask-Cors
-  - Werkzeug
-  - Gunicorn
-  - handcalcs
-resource_limits:
-  memory: ""  # 可以自定义内存限制，例如 "2g"、"500m" 等，不填则默认不进行限制
-  cpus: ""   # 可以自定义 CPU 限制，例如 "1.5"、"0.5" 等，不填则默认不进行限制
-timeout_seconds: 60  # 设置超时时间为 1 分钟（60 秒）
-postgres:
-  user: "user" # 数据库用户名,请自行更改
-  password: "password" # 数据库密码,请自行更改
-  db: "code_interpreter_db"
-  host: "localhost"
-  port: "5432" # 数据库端口,请自行更改
-mode: "docker" # 选择运行模式，可以是 "docker"、"podman" 或 "k8s"，k8s模式正在开发中
-kubeconfig_path: "/path/to/kubeconfig.yaml" # Kubernetes 配置文件路径
-k8s_interpreter_yaml: "/path/to/code-interpreter.yaml" # Kubernetes 部署配置文件路径
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Install yq
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y python3-pip
+          pip3 install yq
+
+      - name: Read config.yaml and generate Dockerfile
+        id: generate_dockerfile
+        run: |
+          dependencies=$(yq e '.dependencies[]' config.yaml | tr '\n' ' ')
+          if [ -z "$dependencies" ]; then
+            echo "No dependencies found in config.yaml"
+            exit 1
+          fi
+          cat > Dockerfile <<EOL
+          FROM python:3.10-slim
+
+          WORKDIR /app
+
+          RUN apt-get update && apt-get install -y \\
+              build-essential \\
+              libssl-dev \\
+              libffi-dev \\
+              python3-dev \\
+              libyaml-dev \\
+              && apt-get clean \\
+              && pip install --no-cache-dir --upgrade pip \\
+              && pip install --no-cache-dir cython \\
+              && pip install --no-cache-dir $dependencies
+
+          COPY . .
+
+          ENV PYTHONUNBUFFERED=1
+
+          EXPOSE 5000
+
+          CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:app"]
+          EOL
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_USERNAME }}/code_interpreter:latest
+            ${{ secrets.DOCKER_USERNAME }}/code_interpreter:${{ github.sha }}
+
+      - name: Clean up Docker images
+        run: |
+          docker image prune -f
