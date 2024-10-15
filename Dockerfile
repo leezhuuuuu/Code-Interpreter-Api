@@ -15,7 +15,6 @@ RUN apt-get update && apt-get install -y \
     python3-dev \
     && apt-get clean \
     && pip install --no-cache-dir --upgrade pip \
-    && pip install --no-cache-dir cython \
     && pip install --no-cache-dir -r requirements.txt
 
 # 第二阶段：运行阶段
