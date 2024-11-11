@@ -230,3 +230,9 @@ Contributions are welcome! Please submit issues or pull requests.
 ## GitHub Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=leezhuuuuu/Code-Interpreter-Api&type=Date)](https://star-history.com/#leezhuuuuu/Code-Interpreter-Api&Date)
+
+## Special Thanks
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM Logo" width="120"/>
+
+Special thanks to IBM for providing computing power support for this project.
