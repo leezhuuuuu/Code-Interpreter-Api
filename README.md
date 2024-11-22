@@ -11,7 +11,7 @@
 ## 概述 🌟
 
 Code Interpreter API 是一个集调度中心与沙箱环境于一体的项目，致力于打造全球最好用的代码解释器，旨在提供一个安全、可靠的 API 接口，用于远程运行代码并获取执行结果，加速各类AI Agent开发，是众多AI爱好者的福音。该项目创新性地结合了 Docker 容器技术，实现了对 Python 代码的安全隔离运行。此外，项目还支持将生成的图像数据存储到 PostgreSQL 数据库中，并通过 API 端点进行访问，提供了丰富的数据处理与存储能力。
-您可以在[这里](https://fastgpt.leez.tech/chat/share?shareId=emvjwl8hgqu4pj314k7yakpp)访问由Fastgpt构建的Demo���
+您可以在[这里](https://fastgpt.leez.tech/chat/share?shareId=emvjwl8hgqu4pj314k7yakpp)访问由Fastgpt构建的Demo。
 
 ## 项目状态 📊
 
